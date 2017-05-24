@@ -10,7 +10,6 @@ for ($i=1; $i<=$maxNum; $i++) {
     } else {
         echo "<td>{$i}</td>";
     }
-
     if ($i % $col == 0) echo '</tr>';
 }
 echo '</table>';
@@ -33,6 +32,7 @@ function isPrimeNumber($number) {
         return false;
     }
     $result = true;
+    // TODO 只要除質數即可(未完成...)
     for ($i = 2; $i <= sqrt($number); $i++) {
         if ($number % $i == 0) {
             $result = false;
@@ -41,4 +41,3 @@ function isPrimeNumber($number) {
     }
     return $result;
 }
-
