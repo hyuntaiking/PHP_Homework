@@ -1,0 +1,67 @@
+<script>
+/*----------------------------------------------------------------------------*/
+/* 程式名稱: Poker(JavaScript版)                                              */
+/* 程式說明: 將52張Poker分給四位玩家                                          */
+/* 傳回參數:                                                                  */
+/* 使用說明:                                                                  */
+/*----------------------------------------------------------------------------*/
+var poker = new Array();
+// new poker
+for (var i=0; i<=51; i++) {
+    poker.push(i);
+}
+// 洗牌
+shuffle(poker);
+var player = new Array2DVar(4,13);
+for (var i= 0; i<=51; i++) {
+    // 發牌給四位玩家
+    player[i%4][Math.floor(i/4)] = poker[i];
+}
+document.write('<table border="1" width="100%">');
+var suit = new Array('<font color="black" size="5">&spades;</font>',
+                     '<font color="red" size="5">&hearts;</font>',
+                     '<font color="black" size="5">&clubs;</font>',
+                     '<font color="red" size="5">&diams;</font>');
+var value = new Array('A',1,2,3,4,5,6,7,8,9,10,'J','Q','K');
+
+for (var i=0; i<4; i++) {
+    player[i].sort(sortNumber);
+    document.write('<tr>');
+    for (var j=0; j<13; j++) {
+        document.write("<td>" + 
+                       suit[Math.floor(player[i][j]/13)] + 
+                       value[player[i][j]%13] + 
+                       "</td>");
+    }
+    document.write('</tr>');
+}
+document.write('</table>');
+/*----------------------------------------------------------------------------*/
+/* 程式名稱: shuffle()                                                        */
+/* 程式說明: 陣列重新洗牌(ES6 version)                                        */
+/* 傳回參數:                                                                  */
+/* 使用說明:                                                                  */
+/*----------------------------------------------------------------------------*/
+function shuffle(a) {
+    for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+    }
+}
+/*----------------------------------------------------------------------------*/
+/* 程式名稱: Array2DVar()                                                     */
+/* 程式說明: 定義二維陣列原型                                                 */
+/* 傳回參數:                                                                  */
+/* 使用說明:                                                                  */
+/*----------------------------------------------------------------------------*/
+function Array2DVar(x,y) { 
+    this.length = x;
+    this.x = x; // x 維度長度
+    this.y = y; // y 維度長度
+    for (var i = 0; i < this.length; i++) // 建立個元素陣列
+    this[i] = new Array(y); // this 代表物件本身
+}
+function sortNumber(a,b) {
+    return a - b;
+}
+</script>

@@ -1,0 +1,27 @@
+<script>
+/*----------------------------------------------------------------------------*/
+/* 程式名稱: Multiplication Table                                             */
+/* 程式說明: 列出九九乘法表                                                   */
+/* 傳回參數:                                                                  */
+/* 使用說明: 可動態調整起始值(start)和行數(col)和列數(row)                    */
+/*----------------------------------------------------------------------------*/
+    var start = 2;
+    var col   = 4;
+    var row   = 2;
+/*-------------------------以上參數可調整-------------------------------------*/
+    document.write('<table border="1" width="100%">');
+    for (var k=0; k<row; k++) {
+        document.write("<tr>");
+        for (var j=start; j<start+col; j++) {
+            var newj = j + k * col;
+            document.write("<td>");
+            for (var i=1; i<=9; i++) {
+                var expression = newj.toString() + " * " + i.toString() + ' = ' + (newj*i).toString() + "<br>";
+                document.write(expression);
+            }
+            document.write("</td>");
+        }
+        document.write("</tr>");
+    }
+    document.write("</table>");
+</script>
